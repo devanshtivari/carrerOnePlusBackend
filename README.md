@@ -1,6 +1,6 @@
 # Auth Service - AI Teaching Platform
 
-The **Auth Service** is the central identity authority for the AI Teaching Platform (ATP). It handles user registration, authentication (JWT RS256), OAuth2 integration (Google, GitHub), session management, and profile updates. Built with **NestJS**, **Prisma**, **PostgreSQL**, and **Redis**.
+The **Auth Service** is the central identity authority for the AI Teaching Platform (ATP). It handles user registration, authentication (JWT RS256), OAuth2 integration (Google, GitHub), session management, and profile updates. Built with **NestJS**, **Prisma**, **PostgreSQL**, and **Redis**
 
 ## Features
 
