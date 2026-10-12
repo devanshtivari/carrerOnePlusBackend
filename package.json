@@ -1,7 +1,7 @@
 {
   "name": "auth-service",
   "version": "1.0.0",
-  "description": "Auth Service for AI Teaching Platform",
+  "description": "Backend Service for AI Teaching Platform",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
