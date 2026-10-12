@@ -20,8 +20,8 @@ export async function createNestApp() {
       }
     },
     credentials: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization,X-User-Id,X-User-Role',
+    methods: '*',
+    allowedHeaders: '*',
     preflightContinue: false,
     optionsSuccessStatus: 204,
   });
