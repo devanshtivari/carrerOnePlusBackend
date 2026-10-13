@@ -6,22 +6,23 @@ import helmet from 'helmet';
 export async function createNestApp() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS
-  const frontendUrl = process.env.FRONTEND_URL;
-  const origins = ['http://localhost:3000', 'http://localhost:3001'];
-  if (frontendUrl) origins.push(frontendUrl);
-
+  // Temporarily open to every origin: reflecting the request origin is the only way
+  // to allow all origins while keeping credentials (cookies) working.
+  // Restore an allowlist (FRONTEND_URL) before going to production.
   app.enableCors({
-    origin: (origin, callback) => {
-      if (!origin || origins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: '*',
-    allowedHeaders: '*',
-    preflightContinue: false,
+    origin: true,
+    credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+      'Origin',
+      'X-Requested-With',
+      'Content-Type',
+      'Accept',
+      'Authorization',
+      'X-User-Id',
+      'X-User-Role',
+    ],
+    exposedHeaders: ['Set-Cookie'],
     optionsSuccessStatus: 204,
   });
 
@@ -29,7 +30,7 @@ export async function createNestApp() {
   app.setGlobalPrefix(process.env.API_PREFIX || 'api/v1');
 
   // Security
-  app.use(helmet());
+  app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
   // Swagger (only in non-prod)
   if (process.env.NODE_ENV !== 'production') {
@@ -53,6 +54,7 @@ async function bootstrap() {
     const app = await createNestApp();
     const port = process.env.PORT || 3001;
     await app.listen(port);
+    console.log("\n\n\nThis is a modified log for success\n\n\n")
     console.log(`Application is running on: http://localhost:${port}`);
   }
 }
