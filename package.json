@@ -10,7 +10,7 @@
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main",
     "build": "nest build",
-    "build:vercel": "prisma generate && prisma migrate deploy && prisma db seed && nest build",
+    "vercel-build": "prisma generate && prisma migrate deploy && prisma db seed && nest build",
     "vercel:deploy": "bash scripts/vercel-deploy.sh",
     "vercel:deploy:prod": "bash scripts/vercel-deploy.sh --prod",
     "vercel:env:pull": "npx vercel env pull .env.vercel.local --yes",
