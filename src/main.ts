@@ -19,7 +19,6 @@ export async function createNestApp() {
         callback(new Error('Not allowed by CORS'));
       }
     },
-    credentials: true,
     methods: '*',
     allowedHeaders: '*',
     preflightContinue: false,
